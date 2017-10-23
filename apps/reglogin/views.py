@@ -12,7 +12,7 @@ def login(request):
     user = User.objects.login(request.POST)
     if user:
         request.session['user_id'] = user.id
-        return redirect('/home')
+        return redirect('/examapp')
     messages.error(request, "Email or password invalid.")
     return redirect('/')
 
@@ -20,7 +20,7 @@ def registration(request):
     errors = User.objects.userIsValid(request.POST)
     if len(errors) == 0:
         request.session['user_id'] = User.objects.createUser(request.POST)
-        return redirect('/home')
+        return redirect('/examapp')
     else:
         for error in errors:
             messages.error(request, error)

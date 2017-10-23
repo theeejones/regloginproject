@@ -32,8 +32,10 @@ class UserManager(models.Manager):
             errors.append('Last name must be between 2 and 255 characters.')
         if not EMAIL_REGEX.match(email) or len(email) < 6 or len(email) > 255:
             errors.append('The email address you entered is invalid.')
-        if not password == cpassword or len(password) < 8 or len(password) > 255:
-            errors.append('Your password and password confirmation do not match')
+        if not password == cpassword:
+            errors.append('Your password and password confirmation do not match.')
+        if len(password) < 8 or len(password) > 255:
+            errors.append('Your password must be between 8 and 255 characters.')
 
         if not errors:
             users = self.filter(email = email)
