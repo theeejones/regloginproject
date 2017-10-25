@@ -1,0 +1,27 @@
+.panel {
+    width: 450px;
+    display: inline-block;
+    margin: 15px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.table {
+    padding: 5px;
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+.header {
+    background-color: #dddddd;
+    font-weight: bold;
+    text-align: left;
+    font-size: 16pt;
+    border: 2px solid black;
+}
+
+.cell {
+    font-size: 14pt;
+    border: 2px solid black;
+    text-align: left;
+}

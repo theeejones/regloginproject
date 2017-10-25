@@ -4,10 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/examapp/examapp.css' %}" media="screen" title="no title"  charset="utf-8">
+    <title>Friends</title>
 </head>
 <body>
-    <a href="/logout">Logout</a>
-    <h1>Exam App</h1>
+    Hi, {{ user.first_name }}! <a href="/logout">Logout</a>
+    <div class="panel">
+        <h2>Your Friends</h2>
+        {% if friendlist %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="header">Name</th>
+                    <th class="header">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for friend in friendlist %}
+                <tr>
+                    <td class="cell">{{friend.first_name}}</td>
+                    <td class="cell">
+                        <a href="/examapp/viewuser/{{friend.id}}">View Profile</a>
+                        <a href="/examapp/removefriend/{{friend.id}}">Remove as Friend</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3>Get Busy Adding Some Friends!</h3>
+        {% endif %}
+    </div>
+    <div class="panel">
+        <h2>Users You Can Add as Friends</h2>
+        {% if nonfriendlist %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="header">Name</th>
+                    <th class="header">Add Friend</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in nonfriendlist %}
+                <tr>
+                    <td class="cell"><a href="/examapp/viewuser/{{user.id}}">{{user.first_name}}</a></td>
+                    <td class="cell"><a href="/examapp/addfriend/{{user.id}}">Add</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3>Wow! You Have a Lot of Friends!</h3>
+        {% endif %}
+    </div>
 </body>
 </html>

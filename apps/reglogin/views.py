@@ -26,12 +26,6 @@ def registration(request):
             messages.error(request, error)
     return redirect("/")
 
-def home(request):
-    if 'user_id' not in request.session:
-        return redirect("/")
-    user = User.objects.get(id=request.session['user_id'])
-    return render(request, 'reglogin/home.html', { 'user': user })
-
 def logout(request):
     request.session.clear()
     return redirect('/')
